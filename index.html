@@ -1,7 +1,33 @@
-<script type="application/json">
-		{
-			"name": "John Doe",
-			"age": 30,
-			"email": "john.doe@example.com"
-		}
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Display JSON Data</title>
+</head>
+<body>
+	<h1>JSON Data</h1>
+	<div id="data"></div>
+
+	<script>
+		// Load the JSON file
+		fetch('base.json')
+			.then(response => response.json())
+			.then(data => {
+				// Access the properties of the JavaScript object
+				const status = data.status;
+				const age = data.age;
+				const name = data.name;
+				const job = data.job;
+
+				// Display the data on the page
+				const jsonData = `<ul>
+					<li>Status: ${status}</li>
+					<li>Age: ${age}</li>
+					<li>Name: ${name}</li>
+					<li>Job: ${job}</li>
+				</ul>`;
+				document.getElementById('data').innerHTML = jsonData;
+			})
+			.catch(error => console.error(error));
+	</script>
+</body>
+</html>
